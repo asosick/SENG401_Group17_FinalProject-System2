@@ -82,7 +82,7 @@ public class DoClusteringStep1 {
 					while((hrsm = in.readRecord()) != null) {
 						short[] sample;
 						sample = handRecordScoreMapToArray((HandRecordScoreMap) hrsm, numBoardCards);
-						out.putScoreGroup(sample);
+						out.putScore(sample);
 					}
 					
 					out.close();

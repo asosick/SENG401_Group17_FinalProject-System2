@@ -18,7 +18,7 @@ import _misc.Constants;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class WriteBinaryScoreStream {
+public class WriteBinaryScoreStream implements WriteBinaryData{
 
 	private BurstBufferedWriter out;
 	private HandRecord iterator;

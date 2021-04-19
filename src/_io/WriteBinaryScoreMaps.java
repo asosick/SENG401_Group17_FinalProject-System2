@@ -24,18 +24,25 @@ import _misc.Constants;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class WriteBinaryScoreMaps {
+public class WriteBinaryScoreMaps implements WriteBinaryData{
+	private DataOutputStream out;
+	private HandRecord iterator;
+	private short[] header;
+	private ScoreMaps in;
+	private byte numBoardCards;
+	private byte[] holeCards;
 
-	public static void writeScoreMapHR(ScoreMaps in, String outFile, int bufferSize) throws IOException {
-		
+	public WriteBinaryScoreMaps(String outFile, int numBoardCards, 
+		byte[] holeCards, int numScoreGroups, int bufferSize)throws IOException
+	{
 		if(new File(outFile).exists()) {
 			throw new RuntimeException("file already exists: " + outFile);
 		}
 
-		DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(outFile), bufferSize));
-		
-		byte numBoardCards = in.getNumberBoardCards();
-		byte[] holeCards = in.getHoleCards();
+		out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(outFile), bufferSize));
+
+		this.numBoardCards = (byte) numBoardCards;
+		this.holeCards = in.getHoleCards();
 		
 		//write version ID
 		if(numBoardCards == 5) {
@@ -49,10 +56,10 @@ public class WriteBinaryScoreMaps {
 		}
 		
 		//build header
-		short[] header = new short[10];
+		header = new short[10];
 		header[0] = holeCards[0];
 		header[1] = holeCards[1];
-		header[2] = numBoardCards;
+		header[2] = (short)numBoardCards;
 		for(int i = 3; i < 10; i++) {
 			header[i] = 0;
 		}
@@ -62,9 +69,13 @@ public class WriteBinaryScoreMaps {
 			out.writeShort(header[i]);
 		}
 		
+		iterator = new HandRecord(numBoardCards, holeCards);
 		
-		HandRecord iterator = new HandRecord(numBoardCards, holeCards);
+	}
+
+	public void putScore() throws IOException{
 		
+		int numBoardCards = header[2];
 		int numScores = 0;
 		int numHands = 0;
 		int numScoresBySize = 0;
@@ -94,7 +105,9 @@ public class WriteBinaryScoreMaps {
 //			System.out.println("numHands: " + numHands);
 //			System.out.println("mapAccumYo: " + in.mapAccumYo);
 		}
-		
-		out.close();		
+	}
+
+	public void close() throws IOException{
+		out.close();
 	}
 }

@@ -11,6 +11,7 @@ import java.io.IOException;
 
 import _game.Card;
 import _io.ReadBinaryScoreStream;
+import _io.WriteBinaryDataFactory;
 import _io.WriteBinaryScoreMaps;
 import _misc.Combinations;
 import _misc.Constants;
@@ -73,9 +74,27 @@ public class DoBacktracking {
 			Helper.prepFilePath(outFile3);
 			Helper.prepFilePath(outFile0);
 			
-			WriteBinaryScoreMaps.writeScoreMapHR(sm4, outFile4, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
-			WriteBinaryScoreMaps.writeScoreMapHR(sm3, outFile3, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
-			WriteBinaryScoreMaps.writeScoreMapHR(sm0, outFile0, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
+			
+/*
+			new WriteBinaryScoreMaps(sm4, outFile4, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
+			wbsc.writeScoreMapHR(sm3, outFile3, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
+			wbsc.writeScoreMapHR(sm0, outFile0, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
+*/
+			//getfactory class
+			WriteBinaryDataFactory writeBinFact = new WriteBinaryDataFactory();
+
+
+			WriteBinaryScoreMaps wbsm4 = (WriteBinaryScoreMaps)writeBinFact.getBinaryWriteStream("ScoreMaps",outFile4, sm4.getNumberBoardCards(), sm4.getHoleCards(), 0, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
+			WriteBinaryScoreMaps wbsm3 = (WriteBinaryScoreMaps)writeBinFact.getBinaryWriteStream("ScoreMaps",outFile3, sm3.getNumberBoardCards(), sm3.getHoleCards(), 0, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
+			WriteBinaryScoreMaps wbsm0 = (WriteBinaryScoreMaps)writeBinFact.getBinaryWriteStream("ScoreMaps",outFile0, sm0.getNumberBoardCards(), sm0.getHoleCards(), 0, Helper.getBufferSize(MAX_SIMULT_FILES_OPEN));
+
+			wbsm4.putScore();
+			wbsm3.putScore();
+			wbsm0.putScore();
+
+			wbsm4.close();
+			wbsm3.close();
+			wbsm0.close();
 
 			deleteLock(holeCards);
 			System.out.println("   Iteration " + ((int) Math.floor(100*((double) ++iterationCounter/numIterations))) + "% done in time: " + (System.currentTimeMillis() - tIteration));

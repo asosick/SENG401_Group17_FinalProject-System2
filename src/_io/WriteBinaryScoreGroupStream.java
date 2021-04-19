@@ -18,7 +18,7 @@ import _misc.Constants;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class WriteBinaryScoreGroupStream {
+public class WriteBinaryScoreGroupStream implements WriteBinaryData{
 
 	private BurstBufferedWriter out;
 	private int numScoreGroups;
@@ -63,7 +63,7 @@ public class WriteBinaryScoreGroupStream {
 		out.close();
 	}
 	
-	public void putScoreGroup(short[] group) throws IOException {
+	public void putScore(short[] group) throws IOException {
 		if(group.length != numScoreGroups) {
 			throw new RuntimeException();
 		}
