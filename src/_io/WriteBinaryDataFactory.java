@@ -17,7 +17,7 @@ public class WriteBinaryDataFactory {
             return new WriteBinaryScoreStream(outFile, numBoardCards, holeCards, bufferSize);
         }
         else{
-            System.err.println("Incorrect String argurment supplied to ReadBinaryDataFactory class");
+            System.err.println("Incorrect String argurment supplied to WriteBinaryDataFactory class");
             return null;
         }
     }
