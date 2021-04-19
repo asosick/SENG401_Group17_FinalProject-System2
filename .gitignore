@@ -4,3 +4,8 @@
 *.jar
 *.war
 *.ear
+.idea/libraries/Meerkat_API.xml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/modules.xml
+SENG401FinalProjectSystem2.iml
