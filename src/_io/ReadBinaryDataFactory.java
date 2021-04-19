@@ -9,7 +9,8 @@ import java.io.IOException;
  * Returns a type of binaryReadStream which inherits from ReadBinaryData interface
  */
 public class ReadBinaryDataFactory {
-    public ReadBinaryData getBinaryReadStream(String binStreamType, String fileName, int numBoardCards, int bufferSize) throws IOException{
+    public ReadBinaryData getBinaryReadStream(String binStreamType, String fileName, int numBoardCards, int bufferSize)
+    throws IOException{
         if(binStreamType == "ScoreGroup"){
             return new ReadBinaryScoreGroupStream(fileName, numBoardCards, bufferSize);
         }
