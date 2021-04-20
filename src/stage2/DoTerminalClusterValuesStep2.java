@@ -6,14 +6,13 @@
  */
 package stage2;
 
-import java.io.IOException;
-
-import stage3.*;
-
 import _game.Card;
-import _io.*;
+import _io.WriteBinaryTerminalClusterValues;
 import _misc.Constants;
 import _misc.Helper;
+import stage3.LoadInputData;
+
+import java.io.IOException;
 
 /**
  * @author Adam
@@ -21,7 +20,7 @@ import _misc.Helper;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class DoTerminalClusterValuesStep2 {
+public class DoTerminalClusterValuesStep2 implements Step {
 	
 	private static final String ROOT_INPUT_DIR = Constants.DATA_FILE_REPOSITORY + 
 			"stage2" + Constants.dirSep;
@@ -31,7 +30,7 @@ public class DoTerminalClusterValuesStep2 {
 	
 	private static final int MAX_SIMULT_FILES_OPEN = 1;
 	
-	public static void main(String[] args) throws IOException {
+	public void doStep(String[] args) throws IOException {
 		double tTotal = System.currentTimeMillis();
 		
 		double[][][] terminalValues = new double[6][][];

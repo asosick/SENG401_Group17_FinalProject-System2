@@ -7,12 +7,14 @@
 package stage2;
 
 import _game.Card;
-import _io.*;
+import _io.ReadBinaryClusterIdStream;
+import _io.WriteBinaryTerminalClusterValues;
 import _misc.Combinations;
 import _misc.Constants;
 import _misc.Helper;
-import stage1.*;
-import java.io.*;
+import stage1.HandEvaluator;
+
+import java.io.IOException;
 
 /**
  * @author Adam
@@ -20,7 +22,7 @@ import java.io.*;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class DoTerminalClusterValuesStep1 {
+public class DoTerminalClusterValuesStep1 implements Step {
 	
 	private static final String ROOT_INPUT_DIR = Constants.DATA_FILE_REPOSITORY + 
 	"stage2" + Constants.dirSep;
@@ -30,7 +32,7 @@ public class DoTerminalClusterValuesStep1 {
 	
 	private static final int MAX_SIMULT_FILES_OPEN = Constants.choose(Card.NUM_CARDS, 2);
 	
-	public static void main(String[] args) throws IOException {
+	public void doStep(String[] args) throws IOException {
 		double tTotal = System.currentTimeMillis();
 
 		int numHoleCards = Constants.choose(Card.NUM_CARDS, 2);

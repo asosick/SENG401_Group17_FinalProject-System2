@@ -6,17 +6,14 @@
  */
 package stage2;
 
-import java.io.*;
-
 import _game.Card;
-import _io.ReadBinaryData;
-import _io.ReadBinaryScoreMapsStream;
-import _io.ReadBinaryScoreStream;
-import _io.WriteBinaryClusterIDStream;
+import _io.ReadBinaryClusterIdTableStream;
+import _io.WriteBinaryTransitionPDT;
+import _misc.Combinations;
 import _misc.Constants;
 import _misc.Helper;
-import _io.*;
-import _misc.*;
+
+import java.io.IOException;
 
 /**
  * @author Adam
@@ -24,7 +21,7 @@ import _misc.*;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class DoTransitionPDTStep2 {
+public class DoTransitionPDTStep2 implements Step {
 	
 	private static final String ROOT_INPUT_DIR = Constants.DATA_FILE_REPOSITORY + 
 	"stage2" + Constants.dirSep;
@@ -34,7 +31,7 @@ public class DoTransitionPDTStep2 {
 	
 	private static final int MAX_SIMULT_FILES_OPEN = Constants.choose(Card.NUM_CARDS, 2);
 
-	public static void main(String[] args) throws IOException {
+	public void doStep(String[] args) throws IOException {
 
 		double timer1 = System.currentTimeMillis();
 

@@ -6,18 +6,16 @@
  */
 package stage2;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-
-import stage1.HandRecordClusterId;
 import _game.Card;
 import _io.ReadBinaryClusterIdStream;
 import _io.WriteBinaryClusterIDTableStream;
-import _misc.ByteArrayWrapper;
 import _misc.Combinations;
 import _misc.Constants;
 import _misc.Helper;
+import stage1.HandRecordClusterId;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Adam
@@ -25,7 +23,7 @@ import _misc.Helper;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class DoTransitionPDTStep1 {
+public class DoTransitionPDTStep1 implements Step {
 	
 	private static final String ROOT_INPUT_DIR = Constants.DATA_FILE_REPOSITORY + 
 	"stage2" + Constants.dirSep;
@@ -35,7 +33,7 @@ public class DoTransitionPDTStep1 {
 	
 	private static final int MAX_SIMULT_FILES_OPEN = 1;
 	
-	public static void main(String[] args) throws IOException {
+	public void doStep(String[] args) throws IOException {
 
 		double tTotal = System.currentTimeMillis();
 

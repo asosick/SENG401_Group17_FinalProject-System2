@@ -35,7 +35,7 @@ import _misc.Helper;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class DoClusteringStep1 {
+public class DoClusteringStep1 implements Step {
 
 	private static final int[] NUM_SCORE_GROUPS = 
 		new int[] {2, -1, -1, 2, 2};
@@ -48,7 +48,7 @@ public class DoClusteringStep1 {
 	
 	private static final int MAX_SIMULT_FILES_OPEN = 2;
 	
-	public static void main(String[] args) throws IOException {
+	public void doStep(String[] args) throws IOException {
 
 		double tTotal = System.currentTimeMillis();
 		

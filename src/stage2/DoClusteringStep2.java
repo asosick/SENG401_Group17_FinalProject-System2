@@ -6,24 +6,18 @@
  */
 package stage2;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.*;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import stage2.Touple.*;
-import stage1.HandRecordScore;
-import stage1.*;
 import _game.Card;
-import _io.*;
-import _io.ReadBinaryScoreMapsStream;
+import _io.ReadBinaryData;
+import _io.ReadBinaryScoreGroupStream;
 import _io.ReadBinaryScoreStream;
 import _io.WriteBinaryClusterIDStream;
-import _misc.Combinations;
 import _misc.Constants;
 import _misc.Helper;
+import stage1.HandRecord;
+import stage1.HandRecordScore;
+import stage1.HandRecordScoreGroups;
+
+import java.io.IOException;
 
 /**
  * @author Adam
@@ -31,7 +25,7 @@ import _misc.Helper;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class DoClusteringStep2 {
+public class DoClusteringStep2 implements Step {
 	
 	// convention is to always end a directory path with the backslash
 	private static final String ROOT_INPUT_DIR_NOSTEP = Constants.DATA_FILE_REPOSITORY + 
@@ -86,7 +80,7 @@ public class DoClusteringStep2 {
 	private static final int s_PhaseDone = 3;
 	
 
-	public static void main(String[] args) throws IOException {
+	public void doStep(String[] args) throws IOException {
 		double tTotal = System.currentTimeMillis();
 
 		int numBoardCards = Integer.parseInt(args[0]);
